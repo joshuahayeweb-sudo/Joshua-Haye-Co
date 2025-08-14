@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Joshua Haye & Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles/style.css">
+  <style>
+    /* Theme Wave Animation Styles */
+    .theme-wave-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.1s;
+    }
+    
+    .theme-wave-container.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .theme-wave {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      background: var(--wave-color);
+      pointer-events: none;
+      animation: ripple 1s ease-out forwards;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    [data-theme="dark"] {
+      --wave-color: rgba(19, 19, 19, 0.8);
+    }
+    
+    [data-theme="light"] {
+      --wave-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Theme toggle styling */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-color);
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--card-background);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Wave Animation Container -->
+  <div class="theme-wave-container" id="theme-wave-container"></div>
+
+  <nav>
+    <div class="nav-content">
+      <div class="logo">
+        <img src="../images/logo.png" alt="Joshua Haye & Co Logo">
+        <p>Joshua Haye & Co<br>Chartered Accountants</p>
+      </div>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li>
+            <a href="services.html" id="services-link">
+              Services <span>▾</span>
+            </a>
+            <div class="dropdown-content" id="services-dropdown">
+              <a href="accounting.html">Accounting</a>
+              <a href="audit.html">Audit and business assurance</a>
+              <a href="planning.html">Business planning</a>
+              <a href="forecasting.html">Budget and financial forecasting</a>
+              <a href="company.html">Company Office</a>
+              <a href="forensic.html">Forensic accounting and auditing</a>
+              <a href="taxation.html">Taxation</a>
+            </div>
+          </li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="about-hero">
+      <div class="about-hero-content" data-aos="fade-up">
+        <h1>About Joshua Haye & Co</h1>
+        <p>A legacy of excellence in financial services since 2005.</p>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-content">
+        <div class="about-grid">
+          <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+            <h3>Our Story</h3>
+            <p>Founded in 2005, Joshua Haye & Co has grown from a small local practice to one of the region's most trusted accounting firms. Our journey has been built on the foundations of integrity, expertise, and client satisfaction.</p>
+          </div>
+          <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+            <h3>Our Mission</h3>
+            <p>We strive to provide exceptional financial services that empower businesses to thrive. Through innovative solutions and personalized attention, we help our clients navigate complex financial landscapes with confidence.</p>
+          </div>
+          <div class="about-card" data-aos="fade-up" data-aos-delay="300">
+            <h3>Our Values</h3>
+            <p>Integrity, excellence, and innovation form the cornerstone of our practice. We believe in building lasting relationships with our clients through transparent communication and unwavering commitment to their success.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="about-content">
+        <h2 style="text-align: center; color: var(--text-color); margin-bottom: 2rem;">Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member-img">
+              <img src="../images/joshua-haye.jpg" alt="Joshua Haye">
+            </div>
+            <h3>Joshua Haye</h3>
+            <p>CEO/Chartered Accountant</p>
+          </div>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member-img">
+              <img src="../images/kerry-ann-reid.jpg" alt="Kerry-Ann Reid">
+            </div>
+            <h3>Kerry-Ann Reid</h3>
+            <p>Chartered Accountant</p>
+          </div>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-member-img">
+              <img src="../images/joel-morrison.jpg" alt="Joel Morrison">
+            </div>
+            <h3>Joel Morrison</h3>
+            <p>Chartered Accountant</p>
+          </div>
+          <div class="team-member" data-aos="fade-up" data-aos-delay="400">
+            <div class="team-member-img">
+              <img src="../images/vaughn.jpg" alt="Vaughn">
+            </div>
+            <h3>Vaughn</h3>
+            <p>Chartered Accountant</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <p><strong>Email:</strong> joshua_haye@yahoo.com</p>
+          <p><strong>Phone:</strong> (876) 928-3611</p>
+          <p><strong>Address:</strong> 21 Rochester Avenue, Kingston 8</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="accounting.html">Accounting</a></li>
+          <li><a href="audit.html">Audit and business assurance</a></li>
+          <li><a href="planning.html">Business planning</a></li>
+          <li><a href="forecasting.html">Budget and financial forecasting</a></li>
+          <li><a href="company.html">Company Office</a></li>
+          <li><a href="forensic.html">Forensic accounting and auditing</a></li>
+          <li><a href="taxation.html">Taxation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Joshua Haye & Co. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Dropdown functionality
+    const servicesLink = document.getElementById('services-link');
+    if (servicesLink) {
+      const dropdown = document.getElementById('services-dropdown');
+      
+      servicesLink.addEventListener('mouseenter', () => {
+        dropdown.classList.add('show');
+      });
+
+      servicesLink.addEventListener('mouseleave', () => {
+        dropdown.classList.remove('show');
+      });
+
+      dropdown.addEventListener('mouseenter', () => {
+        dropdown.classList.add('show');
+      });
+
+      dropdown.addEventListener('mouseleave', () => {
+        dropdown.classList.remove('show');
+      });
+    }
+    
+    // Dark mode toggle with wave animation
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    const themeIcon = document.querySelector('.theme-toggle i');
+    const waveContainer = document.getElementById('theme-wave-container');
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Apply the saved theme or system preference
+    htmlElement.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+    
+    // Create wave animation
+    function createWaveAnimation(event) {
+      // Clear any existing waves
+      waveContainer.innerHTML = '';
+      
+      // Create new wave element
+      const wave = document.createElement('div');
+      wave.classList.add('theme-wave');
+      
+      // Calculate position (centered on the toggle button)
+      const toggleRect = themeToggle.getBoundingClientRect();
+      const centerX = toggleRect.left + toggleRect.width / 2;
+      const centerY = toggleRect.top + toggleRect.height / 2;
+      
+      // Set wave position and size
+      wave.style.left = centerX + 'px';
+      wave.style.top = centerY + 'px';
+      
+      // Add wave to container
+      waveContainer.appendChild(wave);
+      
+      // Activate container
+      waveContainer.classList.add('active');
+      
+      // Remove active class after animation completes
+      setTimeout(() => {
+        waveContainer.classList.remove('active');
+      }, 1000);
+    }
+    
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', (event) => {
+      // Get current theme
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      // Start wave animation
+      createWaveAnimation(event);
+      
+      // Small delay to allow wave to start before changing theme
+      setTimeout(() => {
+        // Update theme
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update icon
+        updateIcon(newTheme);
+      }, 150);
+    });
+    
+    // Update the icon based on the current theme
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    }
+  </script>
+</body>
+</html>

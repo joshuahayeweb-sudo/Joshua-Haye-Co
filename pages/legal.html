@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Compliance - Joshua Haye & Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../styles/style.css">
+  <style>
+    /* Theme Wave Animation Styles */
+    .theme-wave-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.1s;
+    }
+    
+    .theme-wave-container.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .theme-wave {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      background: var(--wave-color);
+      pointer-events: none;
+      animation: ripple 1s ease-out forwards;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+    
+    [data-theme="dark"] {
+      --wave-color: rgba(19, 19, 19, 0.8);
+    }
+    
+    [data-theme="light"] {
+      --wave-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Theme toggle styling */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-color);
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--card-background);
+      transform: scale(1.1);
+    }
+
+    /* Legal Page Specific Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-color);
+      line-height: 1.6;
+      background-color: var(--background-color);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    nav {
+      background: var(--nav-background);
+      padding: 1rem 5%;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 0.5rem 5%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: white;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo p {
+      font-size: 1rem;
+      line-height: 1.3;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4CAF50;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Legal Container */
+    .legal-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 5% 50px;
+    }
+
+    .legal-section {
+      background: var(--card-background);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .legal-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .legal-section h3 {
+      color: var(--secondary-color);
+      margin: 1.5rem 0 1rem;
+      font-size: 1.3rem;
+    }
+
+    .legal-section ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .legal-section li {
+      margin-bottom: 0.8rem;
+    }
+
+    .update-date {
+      text-align: right;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: var(--footer-background);
+      color: white;
+      padding: 4rem 5% 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-section {
+      padding: 0 1rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1.5rem;
+      color: #4CAF50;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .footer-section p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .footer-section a:hover {
+      color: #4CAF50;
+      opacity: 1;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .logo {
+        gap: 10px;
+      }
+      
+      .logo p {
+        font-size: 0.9rem;
+      }
+
+      .footer-section {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Wave Animation Container -->
+  <div class="theme-wave-container" id="theme-wave-container"></div>
+
+  <nav>
+    <div class="nav-content">
+      <div class="logo">
+        <img src="../images/logo.png" alt="Joshua Haye & Co Logo">
+        <p>Joshua Haye & Co<br>Chartered Accountants</p>
+      </div>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="legal.html">Legal</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="legal-container">
+      <div class="legal-section" data-aos="fade-up">
+        <h2>Privacy Policy & Terms of Service</h2>
+        
+        <h3>1. Introduction</h3>
+        <p>Welcome to Joshua Haye & Co. We are committed to protecting your privacy and ensuring the security of your personal information. This policy explains how we collect, use, and protect your data.</p>
+
+        <h3>2. Information We Collect</h3>
+        <p>We collect and process the following types of information:</p>
+        <ul>
+          <li>Personal identification information (name, email address, phone number, TRN)</li>
+          <li>Business information (company name, registration numbers, financial records)</li>
+          <li>Financial information necessary for tax and audit services</li>
+          <li>Communication records between you and our firm</li>
+        </ul>
+
+        <h3>3. How We Use Your Information</h3>
+        <p>Your information is used for:</p>
+        <ul>
+          <li>Providing professional accounting and auditing services</li>
+          <li>Tax preparation and filing with relevant authorities</li>
+          <li>Regulatory compliance and reporting requirements</li>
+          <li>Communicating important updates about our services</li>
+          <li>Improving our service quality and client experience</li>
+        </ul>
+
+        <h3>4. Professional Standards</h3>
+        <p>We maintain the highest professional standards in accordance with:</p>
+        <ul>
+          <li>Institute of Chartered Accountants of Jamaica (ICAJ) regulations</li>
+          <li>International Standards on Auditing (ISA)</li>
+          <li>Professional Ethics Standards</li>
+          <li>Anti-Money Laundering (AML) requirements</li>
+        </ul>
+
+        <h3>5. Data Protection & Security</h3>
+        <p>We protect your data through:</p>
+        <ul>
+          <li>Industry-standard encryption for all digital communications</li>
+          <li>Secure physical storage for paper documents</li>
+          <li>Regular security audits and updates</li>
+          <li>Strict access controls and authentication procedures</li>
+          <li>Employee confidentiality agreements</li>
+        </ul>
+
+        <h3>6. Client Confidentiality</h3>
+        <p>We maintain strict client confidentiality by:</p>
+        <ul>
+          <li>Never sharing client information without explicit consent</li>
+          <li>Implementing need-to-know access policies</li>
+          <li>Secure disposal of outdated documents</li>
+          <li>Regular staff training on confidentiality procedures</li>
+        </ul>
+
+        <h3>7. Your Rights</h3>
+        <p>As our client, you have the right to:</p>
+        <ul>
+          <li>Access your personal information in our records</li>
+          <li>Request corrections to inaccurate information</li>
+          <li>Receive copies of your financial records</li>
+          <li>Be informed about how your data is being used</li>
+          <li>Request deletion of your information (subject to regulatory requirements)</li>
+        </ul>
+
+        <h3>8. Regulatory Compliance</h3>
+        <p>We comply with:</p>
+        <ul>
+          <li>Companies Act of Jamaica</li>
+          <li>Tax Administration Jamaica (TAJ) requirements</li>
+          <li>Financial Services Commission (FSC) regulations</li>
+          <li>International Financial Reporting Standards (IFRS)</li>
+        </ul>
+
+        <h3>9. Contact for Privacy Matters</h3>
+        <p>For any privacy-related concerns or requests, please contact:</p>
+        <ul>
+          <li>Email: joshua_haye@yahoo.com</li>
+          <li>Phone: (876) 928-3611</li>
+          <li>Address: 21 Rochester Avenue, Kingston 8</li>
+        </ul>
+
+        <div class="update-date">
+          Last Updated: February 2025
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <p><strong>Email:</strong> joshua_haye@yahoo.com</p>
+          <p><strong>Phone:</strong> (876) 928-3611</p>
+          <p><strong>Address:</strong> 21 Rochester Avenue, Kingston 8</p>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="legal.html">Legal</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="services.html#auditing">Auditing</a></li>
+          <li><a href="services.html#tax">Tax Services</a></li>
+          <li><a href="services.html#payroll">Payroll Services</a></li>
+          <li><a href="services.html#valuation">Business Valuation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Joshua Haye & Co. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Dark mode toggle with wave animation
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    const themeIcon = document.querySelector('.theme-toggle i');
+    const waveContainer = document.getElementById('theme-wave-container');
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Apply the saved theme or system preference
+    htmlElement.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+    
+    // Create wave animation
+    function createWaveAnimation(event) {
+      // Clear any existing waves
+      waveContainer.innerHTML = '';
+      
+      // Create new wave element
+      const wave = document.createElement('div');
+      wave.classList.add('theme-wave');
+      
+      // Calculate position (centered on the toggle button)
+      const toggleRect = themeToggle.getBoundingClientRect();
+      const centerX = toggleRect.left + toggleRect.width / 2;
+      const centerY = toggleRect.top + toggleRect.height / 2;
+      
+      // Set wave position and size
+      wave.style.left = centerX + 'px';
+      wave.style.top = centerY + 'px';
+      
+      // Add wave to container
+      waveContainer.appendChild(wave);
+      
+      // Activate container
+      waveContainer.classList.add('active');
+      
+      // Remove active class after animation completes
+      setTimeout(() => {
+        waveContainer.classList.remove('active');
+      }, 1000);
+    }
+    
+    // Toggle theme on button click
+    themeToggle.addEventListener('click', (event) => {
+      // Get current theme
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      // Start wave animation
+      createWaveAnimation(event);
+      
+      // Small delay to allow wave to start before changing theme
+      setTimeout(() => {
+        // Update theme
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Update icon
+        updateIcon(newTheme);
+      }, 150);
+    });
+    
+    // Update the icon based on the current theme
+    function updateIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    }
+  </script>
+</body>
+</html>
